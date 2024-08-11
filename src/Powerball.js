@@ -17,7 +17,6 @@ const Powerball = () => {
         encodeURIComponent('https://api.ozlotteries.com/api/v2/draws/pricing/australia_nsw/past/powerball2018?limit=10&offset=0')
       );
       
-      // Parse the JSON from the response
       const data = JSON.parse(response.data.contents);
       const draw = data.result[0]; // Get the latest draw
       const mainNumbers = draw.number_sets[0].numbers.map(num => num.number);
@@ -34,30 +33,52 @@ const Powerball = () => {
 
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>Powerball Results</h1>
-      <button onClick={fetchPowerballNumbers} style={{ padding: '10px 20px', fontSize: '16px' }}>
+      <h1 style={{ fontSize: '2em', marginBottom: '20px' }}>Powerball Results</h1>
+      <button 
+        onClick={fetchPowerballNumbers} 
+        style={{ 
+          padding: '12px 25px', 
+          fontSize: '1em', 
+          borderRadius: '8px', 
+          backgroundColor: '#007bff', 
+          color: '#fff',
+          border: 'none',
+          cursor: 'pointer',
+          width: '80%',
+          maxWidth: '300px',
+          margin: 'auto',
+          display: 'block'
+        }}
+      >
         Get Latest Powerball Numbers
       </button>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {loading && <p style={{ fontSize: '1em', marginTop: '20px' }}>Loading...</p>}
+      {error && <p style={{ color: 'red', fontSize: '1em', marginTop: '20px' }}>{error}</p>}
       {numbers.length > 0 && (
         <div style={{ marginTop: '20px' }}>
-          <h2>Winning Numbers:</h2>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+          <h2 style={{ fontSize: '1.5em' }}>Winning Numbers:</h2>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: '8px', 
+            flexWrap: 'wrap',
+            margin: '10px auto',
+            maxWidth: '400px'
+          }}>
             {numbers.map((number, index) => (
               <span
                 key={index}
                 style={{
                   display: 'inline-block',
-                  padding: '10px',
+                  padding: '15px',
                   borderRadius: '50%',
                   backgroundColor: '#007bff',
                   color: '#fff',
-                  fontSize: '18px',
-                  width: '40px',
-                  height: '40px',
+                  fontSize: '1.5em',
+                  width: '50px',
+                  height: '50px',
                   textAlign: 'center',
-                  lineHeight: '40px',
+                  lineHeight: '50px',
                 }}
               >
                 {number}
@@ -66,19 +87,19 @@ const Powerball = () => {
           </div>
           {powerball && (
             <div style={{ marginTop: '20px' }}>
-              <h2>Powerball Number:</h2>
+              <h2 style={{ fontSize: '1.5em' }}>Powerball Number:</h2>
               <span
                 style={{
                   display: 'inline-block',
-                  padding: '10px',
+                  padding: '15px',
                   borderRadius: '50%',
                   backgroundColor: '#ff5733',
                   color: '#fff',
-                  fontSize: '18px',
-                  width: '40px',
-                  height: '40px',
+                  fontSize: '1.5em',
+                  width: '50px',
+                  height: '50px',
                   textAlign: 'center',
-                  lineHeight: '40px',
+                  lineHeight: '50px',
                 }}
               >
                 {powerball}
